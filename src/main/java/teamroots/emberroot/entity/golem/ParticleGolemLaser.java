@@ -7,16 +7,20 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import teamroots.emberroot.Const;
+import teamroots.emberroot.particle.IParticleTracked;
 
-public class ParticleMote extends Particle implements IEmberParticle {
+@SideOnly(Side.CLIENT)
+public class ParticleGolemLaser extends Particle implements IParticleTracked {
   public float colorR = 0;
   public float colorG = 0;
   public float colorB = 0;
   public float initScale = 0;
   public float initAlpha = 0;
   public static ResourceLocation texture = new ResourceLocation(Const.MODID, "entity/particle_mote");
-  public ParticleMote(World worldIn, double x, double y, double z, double vx, double vy, double vz, float r, float g, float b, float a, float scale, int lifetime) {
+  public ParticleGolemLaser(World worldIn, double x, double y, double z, double vx, double vy, double vz, float r, float g, float b, float a, float scale, int lifetime) {
     super(worldIn, x, y, z, 0, 0, 0);
     this.colorR = r;
     this.colorG = g;
@@ -82,5 +86,9 @@ public class ParticleMote extends Particle implements IEmberParticle {
   @Override
   public void renderParticle(BufferBuilder buffer, EntityPlayer player, float partialTicks, float f, float f4, float f1, float f2, float f3) {
     super.renderParticle(buffer, player, partialTicks, f, f4, f1, f2, f3);
+  }
+  @Override
+  public boolean ignoreDepth() { 
+    return false;
   }
 }
