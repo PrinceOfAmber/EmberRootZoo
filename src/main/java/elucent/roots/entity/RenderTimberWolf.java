@@ -10,14 +10,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class RenderDireWolf extends RenderLiving<EntityDireWolf> {
+public class RenderTimberWolf extends RenderLiving<EntityTimberWolf> {
 
-	public RenderDireWolf(RenderManager renderManager, ModelBase modelBase, float shadowSize) {
+	public RenderTimberWolf(RenderManager renderManager, ModelBase modelBase, float shadowSize) {
 		super(renderManager, modelBase, shadowSize);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityDireWolf entity) {
+	protected ResourceLocation getEntityTexture(EntityTimberWolf entity) {
 		return new ResourceLocation("roots:textures/entity/direwolf.png");
 	}
 }

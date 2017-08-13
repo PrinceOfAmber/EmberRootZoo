@@ -18,7 +18,7 @@ public class RitualBase {
 	public ArrayList<BlockPos> positions = new ArrayList<BlockPos>();
 	public ArrayList<ItemStack> incenses = new ArrayList<ItemStack>();
 	public ArrayList<ItemStack> ingredients = new ArrayList<ItemStack>();
-	public ArrayList<IRitualCost> extraCosts = new ArrayList<IRitualCost>();
+	public ArrayList<Object> extraCosts = new ArrayList<Object>();
 	public Vec3d color = new Vec3d(255,255,255);
 	public Vec3d secondaryColor = new Vec3d(255,255,255);
 	public String name = "";
@@ -55,7 +55,7 @@ public class RitualBase {
 		
 	}
 	
-	public RitualBase addCost(IRitualCost cost){
+	public RitualBase addCost(Object cost){
 		this.extraCosts.add(cost);
 		return this;
 	}

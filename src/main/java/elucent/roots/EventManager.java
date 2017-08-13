@@ -3,7 +3,7 @@ package elucent.roots;
 
 import elucent.roots.capability.mana.ManaProvider;
 import elucent.roots.component.components.ComponentCharmIllusion;
-import elucent.roots.dimension.OtherworldProvider;
+//import elucent.roots.dimension.OtherworldProvider;
 import elucent.roots.entity.EntityHomingProjectile;
 import elucent.roots.entity.ISprite;
 import elucent.roots.event.SpellCastEvent;
@@ -645,23 +645,23 @@ public class EventManager {
 		event.getMap().registerSprite(sparkleRL);
 	}
 	
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public void fogEvent(FogDensity event){
-		if (Minecraft.getMinecraft().thePlayer.dimension == RegistryManager.dimOtherworld.getId()){
-			event.setDensity(0.02f);
-		}
-	}
-	
-	@SubscribeEvent
-	public void onEntitySpawn(LivingSpawnEvent.CheckSpawn event){
-		if (event.getWorld().provider.getDimension() == RegistryManager.dimOtherworld.getId()){
-			if (event.getEntityLiving() instanceof EntitySheep || event.getEntityLiving() instanceof EntityWolf){
-				event.setResult(Result.ALLOW);
-			}
-		}
-	}
-	
+//	@SideOnly(Side.CLIENT)
+//	@SubscribeEvent
+//	public void fogEvent(FogDensity event){
+//		if (Minecraft.getMinecraft().thePlayer.dimension == RegistryManager.dimOtherworld.getId()){
+//			event.setDensity(0.02f);
+//		}
+//	}
+//	
+//	@SubscribeEvent
+//	public void onEntitySpawn(LivingSpawnEvent.CheckSpawn event){
+//		if (event.getWorld().provider.getDimension() == RegistryManager.dimOtherworld.getId()){
+//			if (event.getEntityLiving() instanceof EntitySheep || event.getEntityLiving() instanceof EntityWolf){
+//				event.setResult(Result.ALLOW);
+//			}
+//		}
+//	}
+//	
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onWorldRender(RenderWorldLastEvent event){

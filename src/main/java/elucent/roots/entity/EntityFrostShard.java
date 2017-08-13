@@ -51,7 +51,7 @@ public class EntityFrostShard  extends EntityFlying {// implements IRangedAttack
     public float addDirectionX = 0;
     public float addDirectionY = 0;
     public float twirlTimer = 0;
-    public int lifetime = 40;
+    public int lifetime = 9000;
     Random random = new Random();
     public float damage = 2.0f;
 
@@ -59,7 +59,7 @@ public class EntityFrostShard  extends EntityFlying {// implements IRangedAttack
     	super(worldIn);
         setSize(1.0f,1.0f);
         this.isAirBorne = true;
-        this.setInvisible(true);
+      //  this.setInvisible(true);
         setVelocity(rand.nextFloat()-0.75,rand.nextFloat()*0.75+0.25,rand.nextFloat()-0.75); 
     }
     

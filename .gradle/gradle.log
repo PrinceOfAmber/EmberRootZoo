@@ -1,0 +1,54 @@
+This mapping 'snapshot_20160518' was designed for MC 1.9.4! Use at your own peril.This mapping 'snapshot_20160518' was designed for MC 1.9.4! Use at your own peril.
+
+#################################################
+         ForgeGradle 2.2-SNAPSHOT-d13a6c8        
+  https://github.com/MinecraftForge/ForgeGradle  
+#################################################
+               Powered by MCP unknown               
+             http://modcoderpack.com             
+         by: Searge, ProfMobius, Fesh0r,         
+         R4wk, ZeuX, IngisKahn, bspkrs           
+#################################################
+:deobfCompileDummyTask
+:deobfProvidedDummyTask
+:getVersionJson
+:extractUserdev
+Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.10.2-12.18.1.2076/forge-1.10.2-12.18.1.2076.pom
+Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.10.2-12.18.1.2076/forge-1.10.2-12.18.1.2076-userdev.jar
+:extractDependencyATs SKIPPED
+:extractMcpData SKIPPED
+:extractMcpMappings SKIPPED
+:genSrgs SKIPPED
+:downloadClient SKIPPED
+:downloadServer SKIPPED
+:splitServerJar SKIPPED
+:mergeJars SKIPPED
+:deobfMcSRG
+Applying SpecialSource...
+Applying Exceptor...
+:decompileMc
+:fixMcSources
+:applySourcePatches
+:remapMcSources
+:recompileMc
+:extractNatives SKIPPED
+:getAssetIndex UP-TO-DATE
+:getAssets
+Current status: 176/1112   15%
+Current status: 372/1112   33%
+Current status: 577/1112   51%
+Current status: 761/1112   68%
+Current status: 915/1112   82%
+Current status: 1098/1112   98%
+:makeStart
+:setupDecompWorkspace
+:eclipseClasspath
+:eclipseJdt
+:eclipseProject
+:makeEclipseCleanRunClient
+:makeEclipseCleanRunServer
+:eclipse
+
+BUILD SUCCESSFUL
+
+Total time: 2 mins 58.198 secs

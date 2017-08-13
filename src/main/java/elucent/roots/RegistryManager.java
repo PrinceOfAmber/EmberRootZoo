@@ -1,7 +1,6 @@
 package elucent.roots;
 
-import elucent.roots.block.*;
-import elucent.roots.dimension.OtherworldProvider;
+import elucent.roots.block.*; 
 import elucent.roots.entity.*;
 import elucent.roots.entity.projectile.EntityRitualProjectile;
 import elucent.roots.item.*;
@@ -57,7 +56,7 @@ public class RegistryManager {
 	public static ArmorMaterial druidRobesMaterial = EnumHelper.addArmorMaterial("druidRobes", "roots:druidRobes", 10, new int[]{1,5,6,2}, 20, null, 0);
 	public static ArmorMaterial druidArmorMaterial = EnumHelper.addArmorMaterial("druidArmor", "roots:druidArmor", 15, new int[]{2,5,7,3}, 10, null, 1.0f);
 	
-	public static DimensionType dimOtherworld = DimensionType.register("otherworld", "", ConfigManager.otherworldDimensionID, OtherworldProvider.class, false);
+//	public static DimensionType dimOtherworld = DimensionType.register("otherworld", "", ConfigManager.otherworldDimensionID, OtherworldProvider.class, false);
 	public static BiomeProperties biomeOtherworldProps;
 	public static Biome biomeOtherworld;
 	
@@ -239,7 +238,7 @@ public class RegistryManager {
 		 * REGISTERING DIMENSIONS
 		 */
 		
-		DimensionManager.registerDimension(ConfigManager.otherworldDimensionID, dimOtherworld);
+//		DimensionManager.registerDimension(ConfigManager.otherworldDimensionID, dimOtherworld);
 	}
 
 	private static String customTileName(String name)
@@ -264,16 +263,18 @@ public class RegistryManager {
 		EntityRegistry.registerModEntity(EntitySpriteGuardian.class, "spriteGuardian", 10, Roots.instance, 64, 1, true);
 		EntityRegistry.registerEgg(EntitySpriteGuardian.class, Util.intColor(66, 230, 0), Util.intColor(130, 255, 60));
 		EntityRegistry.registerModEntity(EntitySummoner.class, "entitySummoner", 11, Roots.instance, 64, 1, true);
+    EntityRegistry.registerEgg(EntityFrostShard.class, Util.intColor(172, 155, 147), Util.intColor(106, 94, 88));
+		
 		EntityRegistry.registerModEntity(EntityHomingProjectile.class,"entityHomingProjectile",12,Roots.instance,64,1,true);
 		EntityRegistry.registerModEntity(EntitySpellProjectile.class,"entitySpellProjectile",13,Roots.instance,64,1,true);
 		EntityRegistry.registerModEntity(EntityDeer.class,"deer",14,Roots.instance,64,1,true);
 		EntityRegistry.registerEgg(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
-		EntityRegistry.registerModEntity(EntityDireWolf.class,"direwolf",15,Roots.instance,64,1,true);
-		EntityRegistry.registerEgg(EntityDireWolf.class, Util.intColor(172, 155, 147), Util.intColor(106, 94, 88));
+		EntityRegistry.registerModEntity(EntityTimberWolf.class,"direwolf",15,Roots.instance,64,1,true);
+		EntityRegistry.registerEgg(EntityTimberWolf.class, Util.intColor(172, 155, 147), Util.intColor(106, 94, 88));
 	}
 	
 	public static void registerRecipes(){
-		RecipeRegistry.registerAll();
+//		RecipeRegistry.registerAll();
 	}
 	
 	public static void registerAchievements(){
@@ -480,6 +481,6 @@ public class RegistryManager {
 		RenderingRegistry.registerEntityRenderingHandler(EntityHomingProjectile.class,new RenderHomingProjectile(Minecraft.getMinecraft().getRenderManager(),ModelHolder.entityModels.get("null"),0.5f));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpellProjectile.class,new RenderSpellProjectile(Minecraft.getMinecraft().getRenderManager(),ModelHolder.entityModels.get("null"),0.5f));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDeer.class,new RenderDeer(Minecraft.getMinecraft().getRenderManager(),ModelHolder.entityModels.get("deer"),0.5f));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDireWolf.class,new RenderDireWolf(Minecraft.getMinecraft().getRenderManager(),ModelHolder.entityModels.get("direwolf"),0.5f));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTimberWolf.class,new RenderTimberWolf(Minecraft.getMinecraft().getRenderManager(),ModelHolder.entityModels.get("direwolf"),0.5f));
 	}
 }

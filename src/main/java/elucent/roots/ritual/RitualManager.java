@@ -5,7 +5,7 @@ import elucent.roots.entity.EntityGreaterSprite;
 import elucent.roots.entity.EntitySprite;
 import elucent.roots.entity.EntitySpriteGuardian;
 import elucent.roots.entity.EntitySpriteling;
-import elucent.roots.ritual.costs.RitualCostSprites;
+//import elucent.roots.ritual.costs.RitualCostSprites;
 import elucent.roots.ritual.rituals.*;
 import elucent.roots.tileentity.TileEntityBrazier;
 import net.minecraft.entity.monster.*;
@@ -888,7 +888,7 @@ public class RitualManager {
 				.addIngredient(new ItemStack(Items.GLOWSTONE_DUST,1)));
 		rituals.add(new RitualSpiritSummoning("spriteSummoning",107,255,28)
 				.init(EntitySprite.class,6,false)
-				.addCost(new RitualCostSprites(1,0,0))
+		//	.addCost(new RitualCostSprites(1,0,0))
 				.addBlock(RegistryManager.standingStoneT1, -3, 0, -3)
 				.addBlock(RegistryManager.standingStoneT1, -3, 0, 3)
 				.addBlock(RegistryManager.standingStoneT1, 3, 0, -3)
@@ -906,7 +906,7 @@ public class RitualManager {
 				.addIngredient(new ItemStack(Items.GLOWSTONE_DUST,1)));
 		rituals.add(new RitualSpiritSummoning("greaterSpriteSummoning",107,255,28)
 				.init(EntityGreaterSprite.class,8,false)
-				.addCost(new RitualCostSprites(2,1,0))
+			//	.addCost(new RitualCostSprites(2,1,0))
 				.addBlock(RegistryManager.standingStoneT1, -3, 0, -3)
 				.addBlock(RegistryManager.standingStoneT1, -3, 0, 3)
 				.addBlock(RegistryManager.standingStoneT1, 3, 0, -3)
@@ -924,7 +924,7 @@ public class RitualManager {
 				.addIngredient(new ItemStack(Items.BLAZE_POWDER,1)));
 		rituals.add(new RitualSpiritSummoning("spriteGuardianSummoning",107,255,28)
 				.init(EntitySpriteGuardian.class,12,true)
-				.addCost(new RitualCostSprites(4,2,2))
+			//	.addCost(new RitualCostSprites(4,2,2))
 				.addBlock(RegistryManager.standingStoneT1, -3, 0, -3)
 				.addBlock(RegistryManager.standingStoneT1, -3, 0, 3)
 				.addBlock(RegistryManager.standingStoneT1, 3, 0, -3)
@@ -956,7 +956,7 @@ public class RitualManager {
 				.addIngredient(new ItemStack(Items.GLOWSTONE_DUST,1))
 				.addIngredient(new ItemStack(Items.REDSTONE,1))
 				.addIngredient(new ItemStack(Items.GUNPOWDER,1))
-				.addCost(new RitualCostSprites(1,0,0))
+			//	.addCost(new RitualCostSprites(1,0,0))
 				.addIncense(new ItemStack(RegistryManager.birchTreeBark,1))
 				.addIncense(new ItemStack(RegistryManager.oldRoot,1)));
 

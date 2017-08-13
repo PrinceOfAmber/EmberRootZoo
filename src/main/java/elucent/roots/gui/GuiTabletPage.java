@@ -258,9 +258,9 @@ public class GuiTabletPage extends GuiScreen {
 				}
 			}
 			
-			for (int i = 0; i < research.info.get(currentPage).altarRecipe.extraCosts.size(); i ++){
-				research.info.get(currentPage).altarRecipe.extraCosts.get(i).renderInGUI(this, basePosX, basePosY);
-			}
+//			for (int i = 0; i < research.info.get(currentPage).altarRecipe.extraCosts.size(); i ++){
+//				research.info.get(currentPage).altarRecipe.extraCosts.get(i).renderInGUI(this, basePosX, basePosY);
+//			}
 			String title = I18n.format("roots.research."+group.name+"."+research.name+".page"+(this.currentPage+1)+"title.name");
 			fontRendererObj.drawStringWithShadow(title, basePosX+96-(this.fontRendererObj.getStringWidth(title)/2.0f), basePosY+12, Util.intColor(255, 255, 255));
 		}

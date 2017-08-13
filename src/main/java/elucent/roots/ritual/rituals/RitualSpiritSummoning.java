@@ -85,11 +85,11 @@ public class RitualSpiritSummoning extends RitualSummoning {
 				}
 			}
 		}
-		for (int i = 0; i < this.extraCosts.size(); i ++){
-			if (!this.extraCosts.get(i).isValid(world, pos)){
-				return false;
-			}
-		}
+//		for (int i = 0; i < this.extraCosts.size(); i ++){
+//			if (!this.extraCosts.get(i).isValid(world, pos)){
+//				return false;
+//			}
+//		}
 		return uniqueFlowers.size() == numFlowers && Util.itemListsMatchWithSize(ingredients,((TileEntityAltar)world.getTileEntity(pos)).inventory);
 	}
 	

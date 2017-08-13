@@ -1,45 +1,45 @@
 {
-    "spiritAmbient":
+    "spiritambient":
     { 
     "category": "neutral",
     "sounds": [ "roots:spiritambient" ] 
     },
-    "spiritHurt":
+    "spirithurt":
     { 
     "category": "neutral",
     "sounds": [ "roots:spirithurt" ] 
     },
-    "bossAmbient":
+    "bossambient":
     { 
     "category": "hostile",
     "sounds": [ "roots:bossambient" ] 
     },
-    "bossHurt":
+    "bosshurt":
     { 
     "category": "hostile",
     "sounds": [ "roots:bosshurt" ] 
     },
-    "bossDeath":
+    "bossdeath":
     { 
     "category": "hostile",
     "sounds": [ "roots:bossdeath" ] 
     },
-    "staffCast":
+    "staffcast":
     { 
     "category": "player",
     "sounds": [ "roots:staffcast" ] 
     },
-    "meleeCast":
+    "meleecast":
     { 
     "category": "player",
     "sounds": [ "roots:meleecast" ] 
     },
-    "ritualCast":
+    "ritualcast":
     { 
     "category": "roots:player",
     "sounds": [ "roots:ritualprocess" ] 
     },
-    "chargingStart":
+    "chargingstart":
     { 
     "category": "roots:player",
     "sounds": [ "roots:chargingstart" ] 
