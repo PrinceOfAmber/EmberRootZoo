@@ -1,7 +1,6 @@
 package teamroots.emberroot.entity.sprout;
-import java.util.Random;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIPanic;
@@ -16,15 +15,18 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import teamroots.emberroot.Const;
+import teamroots.emberroot.config.ConfigSpawnEntity;
 
 public class EntitySprout extends EntityCreature {
   public static final DataParameter<Integer> variant = EntityDataManager.<Integer> createKey(EntitySprout.class, DataSerializers.VARINT);
+  public static final String NAME = "sprout";
   public static enum VariantColors {
     RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE;
     public String nameLower() {
       return this.name().toLowerCase();
     }
   }
+  public static ConfigSpawnEntity config = new ConfigSpawnEntity(EntitySprout.class, EnumCreatureType.AMBIENT);;
   public EntitySprout(World world) {
     super(world);
     setSize(0.5f, 1.0f);
@@ -49,7 +51,9 @@ public class EntitySprout extends EntityCreature {
   @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
-    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
+   ConfigSpawnEntity.syncInstance(this, config.settings);
+
+//    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
     this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
   }
   public Integer getVariant() {

@@ -2,6 +2,7 @@ package teamroots.emberroot.entity.slime;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,12 +12,16 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import teamroots.emberroot.Const;
+import teamroots.emberroot.config.ConfigSpawnEntity;
 
 public class EntityRainbowSlime extends EntitySlime {
   public static final DataParameter<Integer> variant = EntityDataManager.<Integer> createKey(EntitySlime.class, DataSerializers.VARINT);
+  public static final String NAME = "rainbowslime";
   public static enum VariantColors {
     BLUE, GREY, WHITE, PURPLE, RED;//water, snow, clay
     public String nameLower() {
@@ -24,8 +29,14 @@ public class EntityRainbowSlime extends EntitySlime {
     }
   }
   public static boolean canPlaceBlocks;
+  public static ConfigSpawnEntity config = new ConfigSpawnEntity(EntityRainbowSlime.class, EnumCreatureType.MONSTER);
   public EntityRainbowSlime(World worldIn) {
     super(worldIn);
+  }
+  @Override
+  protected void applyEntityAttributes() {
+    super.applyEntityAttributes();
+    ConfigSpawnEntity.syncInstance(this, config.settings);
   }
   @Override
   protected void entityInit() {
@@ -42,11 +53,6 @@ public class EntityRainbowSlime extends EntitySlime {
   protected void initEntityAI() {
     super.initEntityAI();
   }
-  //  @Override
-  //  public ResourceLocation getLootTable() {
-  //    String colour = getVariantEnum().nameLower();
-  //    return new ResourceLocation(Const.MODID, "entity/slime_" + colour);
-  //  }
   private boolean isBaby() {
     return this.getSlimeSize() == 1;
   }
@@ -185,5 +191,10 @@ public class EntityRainbowSlime extends EntitySlime {
   public void writeEntityToNBT(NBTTagCompound compound) {
     super.writeEntityToNBT(compound);
     compound.setInteger("variant", getDataManager().get(variant));
+  }
+  @Override
+  public ResourceLocation getLootTable() {
+    String colour = getVariantEnum().nameLower();
+    return new ResourceLocation(Const.MODID, "entity/slime_" + colour);
   }
 }

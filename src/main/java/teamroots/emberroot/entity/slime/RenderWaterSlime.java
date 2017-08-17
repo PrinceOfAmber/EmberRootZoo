@@ -2,11 +2,12 @@ package teamroots.emberroot.entity.slime;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.layers.LayerSlimeGel;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import teamroots.emberroot.Const;
+import teamroots.emberroot.config.ConfigManager;
+import teamroots.emberroot.util.RenderUtil;
 
 public class RenderWaterSlime extends RenderLiving<EntitySlime> {//RenderSlime {
   public RenderWaterSlime(RenderManager rm, ModelWaterSlime mainModel, float shadowSize) {
@@ -20,6 +21,8 @@ public class RenderWaterSlime extends RenderLiving<EntitySlime> {//RenderSlime {
   public void doRender(EntitySlime entity, double x, double y, double z, float entityYaw, float partialTicks) {
     this.shadowSize = 0.25F * (float) entity.getSlimeSize();
     super.doRender(entity, x, y, z, entityYaw, partialTicks);
+    if (ConfigManager.renderDebugHitboxes)
+      RenderUtil.renderEntityBoundingBox(entity, x, y, z);
   }
   /**
    * Allows the render to do state modifications necessary before the model is

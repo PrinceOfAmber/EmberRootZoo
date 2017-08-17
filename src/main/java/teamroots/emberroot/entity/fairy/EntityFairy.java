@@ -7,24 +7,17 @@ import javax.annotation.Nullable;
 import com.google.common.base.Optional;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -35,17 +28,18 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import teamroots.emberroot.Const;
 import teamroots.emberroot.EmberRootZoo;
+import teamroots.emberroot.config.ConfigSpawnEntity;
 import teamroots.emberroot.entity.ai.EntityAITemptFlying;
 import teamroots.emberroot.proxy.ClientProxy;
 
 public class EntityFairy extends EntityFlying {
-  private static final float FOLLOW_OWNER_RANGE = 4.0f;
   public static final DataParameter<Integer> variant = EntityDataManager.<Integer> createKey(EntityFairy.class, DataSerializers.VARINT);
   public static final DataParameter<BlockPos> spawnPosition = EntityDataManager.<BlockPos> createKey(EntityFairy.class, DataSerializers.BLOCK_POS);
   public static final DataParameter<BlockPos> targetPosition = EntityDataManager.<BlockPos> createKey(EntityFairy.class, DataSerializers.BLOCK_POS);
   public static final DataParameter<Boolean> tame = EntityDataManager.<Boolean> createKey(EntityFairy.class, DataSerializers.BOOLEAN);
   //public static final DataParameter<Boolean> sitting = EntityDataManager.<Boolean> createKey(EntityFairy.class, DataSerializers.BOOLEAN);
   protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.<Optional<UUID>> createKey(EntityFairy.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+  public static final String NAME = "fairy";
   public static enum VariantColors {
     GREEN, PURPLE, PINK, ORANGE, BLUE, YELLOW, RED;
     public String nameLower() {
@@ -110,6 +104,9 @@ public class EntityFairy extends EntityFlying {
       return 0;
     }
   }
+  public static Random random = new Random();
+  public static int counter = 0;
+  public static ConfigSpawnEntity config = new ConfigSpawnEntity(EntityFairy.class, EnumCreatureType.CREATURE);
   //public UUID owner = null;
   public EntityFairy(World world) {
     super(world);
@@ -214,8 +211,6 @@ public class EntityFairy extends EntityFlying {
       }
     }
   }
-  public static Random random = new Random();
-  public static int counter = 0;
   @SideOnly(Side.CLIENT)
   public static void spawnParticleGlow(World world, float x, float y, float z, float vx, float vy, float vz, float r, float g, float b, float a, float scale, int lifetime) {
     if (EmberRootZoo.proxy instanceof ClientProxy) {
@@ -247,9 +242,10 @@ public class EntityFairy extends EntityFlying {
         double targY = p.posY + p.height;
         double targZ = p.posZ;
         int count = 1;
-        if (this.getDistanceSqToEntity(p) < FOLLOW_OWNER_RANGE) {
+        double followRange = config.settings.followRange;
+        if (this.getDistanceSqToEntity(p) < followRange) {
           this.playTameEffect(2);
-          List<EntityFairy> list = world.getEntitiesWithinAABB(EntityFairy.class, p.getEntityBoundingBox().expand(FOLLOW_OWNER_RANGE, FOLLOW_OWNER_RANGE, FOLLOW_OWNER_RANGE));
+          List<EntityFairy> list = world.getEntitiesWithinAABB(EntityFairy.class, p.getEntityBoundingBox().expand(followRange, followRange, followRange));
           List<EntityFairy> prunedList = new ArrayList<EntityFairy>();
           for (EntityFairy f : list) {
             if (f.getDataManager().get(tame) && f.getOwnerId() != null && f.getOwnerId().compareTo(p.getUniqueID()) == 0) {
@@ -376,7 +372,7 @@ public class EntityFairy extends EntityFlying {
   @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
-    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(18.0D);
+    ConfigSpawnEntity.syncInstance(this, config.settings);
   }
   @Override
   public ResourceLocation getLootTable() {
